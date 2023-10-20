@@ -15,6 +15,7 @@ public class JoinServiceTest {
 
     @BeforeEach
     void init() {
+        MemberDAO.clearData();
         joinService = ServiceManager.getInstance().joinService();
     }
 
@@ -34,6 +35,7 @@ public class JoinServiceTest {
     @DisplayName("회원가입 성공시 예외발생하지 않음")
     void joinSuccess() {
         assertDoesNotThrow(() -> {
+            MemberDAO.clearData();
             joinService.join(getMember());
         });
     }
@@ -173,8 +175,9 @@ public class JoinServiceTest {
     void duplicateJoinCheck() {
         assertThrows(DuplicateMemberException.class, () -> {
            Member member = getMember();
+           String userPw = member.getUserPw();
            joinService.join(member);
-
+            member.setUserPw(userPw);
            joinService.join(member);
         });
     }

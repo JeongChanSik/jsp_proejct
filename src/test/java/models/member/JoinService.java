@@ -14,5 +14,7 @@ public class JoinService {
     }
     public void join(Member member){
         validator.check(member);
+
+        memberdao.register(member);
     }
 }
