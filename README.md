@@ -11,6 +11,7 @@
   - jstl implementation
   - lombok
 - tomcat10 서버 설정
+
 - 회원 가입 기능 설계(JoinService)
   - models/member/JoinService.java
   - 필수 항목 검증(아이디, 비밀번호, 비밀번호 확인, 회원명, 이메일, 회원가입 약관 동의)
@@ -18,3 +19,9 @@
   - 비밀번호, 비밀번호 확인 입력 데이터 일치 여부 체크
   - 아이디 중복 여부 체크 (중복된 경우 가입이 안 되도록 설정)
   - 회원 정보 저장
+  
+- 로그인 기능 설계(LoginService)
+  - models/member/LoginService.java
+  - 필수 항목 검증(아이디, 비밀번호)
+  - 아이디에 해당하는 회원 정보가 있는지 체크
+  - 로그인 처리(Session에 회원 정보를 저장하기)

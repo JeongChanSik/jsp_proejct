@@ -10,11 +10,11 @@ public class ServiceManager {
         }
         return  instance;
     }
-    public MemberDAO memberDAO(){
+    public MemberDAO memberDAO() {
         return new MemberDAO();
     }
 
-    public JoinValidator joinValidator(){
+    public JoinValidator joinValidator() {
         JoinValidator validator = new JoinValidator();
         validator.setMemberDAO(memberDAO());
         return validator;
@@ -22,5 +22,13 @@ public class ServiceManager {
 
     public JoinService joinService() {
         return new JoinService(joinValidator(), memberDAO());
+    }
+
+    public LoginValidator loginValidator() {
+        return new LoginValidator();
+    }
+
+    public LoginService loginService() {
+        return new LoginService(loginValidator());
     }
 }
