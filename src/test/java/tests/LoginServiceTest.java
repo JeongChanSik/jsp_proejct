@@ -2,10 +2,8 @@ package tests;
 
 import commons.BadRequestException;
 import jakarta.servlet.http.HttpServletRequest;
-import models.member.JoinService;
-import models.member.LoginService;
-import models.member.Member;
-import models.member.ServiceManager;
+import jakarta.servlet.http.HttpSession;
+import models.member.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,6 +24,9 @@ public class LoginServiceTest {
     private LoginService loginService;
     @Mock
     private HttpServletRequest request;
+
+    @Mock
+    private HttpSession session;
     private Member member;
     @BeforeEach
     void init() {
@@ -34,6 +35,8 @@ public class LoginServiceTest {
         member = getMember();
         JoinService joinService = ServiceManager.getInstance().joinService();
         joinService.join(member);
+
+        given(request.getSession()).willReturn(session);
     }
 
     private Member getMember() {
@@ -89,5 +92,15 @@ public class LoginServiceTest {
         });
 
         assertTrue(thrown.getMessage().contains(word));
+    }
+
+    @Test
+    @DisplayName("아이디에 해당하는 회원 정보가 있는지 체크하고 검증 실패 시 MemberNotFoundException 발생")
+    void memberExistsCheck() {
+        assertThrows(MemberNotFoundException.class, () -> {
+            createRequestData(member.getUserId() + "**", member.getUserPw());
+            loginService.login(request);
+
+        });
     }
 }
