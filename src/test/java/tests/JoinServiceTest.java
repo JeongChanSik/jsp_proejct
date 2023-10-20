@@ -1,10 +1,7 @@
 package tests;
 
 import commons.BadRequestException;
-import models.member.JoinService;
-import models.member.JoinValidator;
-import models.member.Member;
-import models.member.MemberDAO;
+import models.member.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,10 +14,10 @@ public class JoinServiceTest {
     private JoinService joinService;
 
     void init(){
-        joinService = new JoinService(new JoinValidator(), new MemberDAO());
+        joinService = ServiceManager.getInstance().joinService();
     }
 
-    private Member getMember(){
+    private Member getMember() {
         return Member.builder()
                         .userId("user" + System.currentTimeMillis())
                         .userPw("12345678")
@@ -40,7 +37,7 @@ public class JoinServiceTest {
     @Test
     @DisplayName("필수 항목 검증(아이디, 비밀번호, 비밀번호 확인, 회원명, 이메일, 회원가입 약관 동의)" +
             " 검증 실패 시 BadRequestException 발생")
-    void requiredFieldCheck(){
+    void requiredFieldCheck() {
         // 아이디가 null값 또는 빈 값일 때
         assertThrows(BadRequestException.class, () -> {
             Member member = getMember();
