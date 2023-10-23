@@ -1,5 +1,6 @@
 package controllers.member;
 
+import commons.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import models.member.ServiceManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import static commons.ScriptUtil.alertError;
 
 @WebServlet("/member/join")
 public class JoinController extends HttpServlet {
@@ -27,11 +30,14 @@ public class JoinController extends HttpServlet {
             service.join(req);
 
         } catch (RuntimeException e) {
+            alertError(resp, e);
+
+            /* ScriptUtil 클래스를 만들어서 더 편리하게 사용할 수 있어서 사용하지 않아도 된다.
             resp.setContentType("text/html; charset=UTF-8");
             PrintWriter out = resp.getWriter();
             out.printf("<script>alert('%s');</script>", e.getMessage());
 
-            e.printStackTrace();
+            e.printStackTrace();*/
         }
     }
 }
