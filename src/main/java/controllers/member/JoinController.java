@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import static commons.ScriptUtil.alertError;
+import static commons.ScriptUtil.go;
 
 @WebServlet("/member/join")
 public class JoinController extends HttpServlet {
@@ -28,6 +29,9 @@ public class JoinController extends HttpServlet {
         try {
             JoinService service = ServiceManager.getInstance().joinService();
             service.join(req);
+
+            String url = req.getContextPath() + "/member/login";
+            go(resp, url, "parent");
 
             // resp.sendRedirect(req.getContextPath() + "/member/login");
         } catch (RuntimeException e) {
