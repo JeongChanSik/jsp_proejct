@@ -63,4 +63,4 @@
 
 ### 메인 페이지
 
-![메인 페이지]()
+![메인 페이지](https://raw.githubusercontent.com/JeongChanSik/jsp_proejct/Description/images/main.png)
