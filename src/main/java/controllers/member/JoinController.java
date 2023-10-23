@@ -1,6 +1,6 @@
 package controllers.member;
 
-import commons.*;
+import static commons.ScriptUtil.*;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,10 +11,6 @@ import models.member.JoinService;
 import models.member.ServiceManager;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import static commons.ScriptUtil.alertError;
-import static commons.ScriptUtil.go;
 
 @WebServlet("/member/join")
 public class JoinController extends HttpServlet {

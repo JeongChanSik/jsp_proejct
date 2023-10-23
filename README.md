@@ -45,3 +45,19 @@
     - 로그아웃(/member/logout), 마이 페이지 링크(/mypage) 링크
   - 미 로그인 상태
     - 회원가입(/member/join), 로그인(/member/login) 링크
+  - 로그아웃
+    - /member/logout 
+    - Controller
+      - controllers/member/LogoutController.java
+    - GET, POST 메소드 상관 없이 기능을 할 수 있도록 처리
+
+## 완성 화면
+
+### 회원가입
+![회원가입] ()
+
+### 로그인 
+![로그인] ()
+
+### 메인 페이지
+![메인 페이지] ()
