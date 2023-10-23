@@ -39,3 +39,9 @@
     - GET : 로그인 양식
     - POST : 로그인 처리
   - View : /WEB-INF/templates/member/login.jsp
+- 메인 페이지
+  - 로그인 한 경우
+    - 사용자명(아이디)님 로그인 메세지 출력
+    - 로그아웃(/member/logout), 마이 페이지 링크(/mypage) 링크
+  - 미 로그인 상태
+    - 회원가입(/member/join), 로그인(/member/login) 링크
